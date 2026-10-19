@@ -1,0 +1,44 @@
+Instruções de Deploy e Execução
+Execução Local (Desenvolvimento)
+Certifique-se de ter Node.js v20+ e PostgreSQL instalados.
+
+No diretório backend:
+
+Crie um arquivo .env com: DATABASE_URL="postgresql://user:pass@localhost:5432/ecommerce" e STRIPE_SECRET_KEY="sk_test_...".
+
+Execute: npm install, npx prisma db push (para criar as tabelas) e npm run dev.
+
+No diretório frontend:
+
+Crie um arquivo .env.local com: NEXT_PUBLIC_API_URL="http://localhost:5000".
+
+Execute: npm install e npm run dev.
+
+Deploy para Produção (Hospedagem)
+Versionamento (GitHub): Adicione as pastas node_modules, .env, e .env.local ao seu arquivo .gitignore. Faça o commit do repositório para o GitHub.
+
+Deploy do Banco de Dados (Supabase ou Render): Crie uma instância gerenciada de PostgreSQL no Supabase (gratuito) e copie a URI de conexão.
+
+Deploy do Back-end (Render ou Railway):
+
+Conecte sua conta do GitHub ao Render.
+
+Crie um "Web Service", aponte para a pasta backend.
+
+Comando de Build: npm install && npx prisma generate.
+
+Comando de Start: node src/server.js.
+
+Adicione as variáveis de ambiente (DATABASE_URL, STRIPE_SECRET_KEY) no painel.
+
+Deploy do Front-end (Vercel):
+
+Conecte o GitHub à Vercel. Selecione a pasta frontend.
+
+O Next.js será reconhecido automaticamente.
+
+Adicione a variável NEXT_PUBLIC_API_URL apontando para a URL pública gerada pelo Render.
+
+Clique em "Deploy".
+
+Com essa estrutura, seu sistema estará rodando com performance de ponta, infraestrutura distribuída e blindado contra as vulnerabilidades web mais críticas.
