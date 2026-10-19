@@ -1,0 +1,37 @@
+1. Configuração do Gateway de Pagamento (Stripe)
+Já que o código de checkout está pronto, você precisa das chaves para que ele funcione quando formos testar.
+
+Crie uma conta gratuita no Stripe.
+
+Acesse o painel de desenvolvedor (em modo de teste).
+
+Copie a sua Secret Key (Chave Secreta) e a Publishable Key (Chave Pública).
+
+2. Preparação das Variáveis de Ambiente (.env)
+Mesmo sem o banco de dados rodando agora, já podemos deixar os arquivos de configuração prontos.
+
+No Back-end: Crie o arquivo .env na pasta backend e adicione a chave do Stripe que você pegou no passo anterior:
+
+Snippet de código
+STRIPE_SECRET_KEY="sk_test_sua_chave_aqui"
+PORT=5000
+# DATABASE_URL ficará vazia ou comentada por enquanto
+No Front-end: Crie o arquivo .env.local na pasta frontend e defina a URL da API:
+
+Snippet de código
+NEXT_PUBLIC_API_URL="http://localhost:5000"
+3. Ajuste Visual e Dados Fictícios (Mock Data) no Front-end
+Como o banco de dados não está ativo para fornecer os produtos reais, você pode criar uma lista de produtos "falsos" (mock) diretamente no código do Next.js para poder trabalhar no visual (Tailwind CSS) e ver como a vitrine ficará.
+
+Crie um array de produtos no seu arquivo page.tsx para renderizar os cards e testar a responsividade da página no navegador.
+
+4. Criação das Contas de Hospedagem
+Para adiantar o deploy futuro:
+
+Crie uma conta na Vercel (para o front-end).
+
+Crie uma conta no Render ou Railway (para o back-end).
+
+Crie uma conta no Supabase (para quando formos criar o banco de dados PostgreSQL).
+
+Me avise qual desses passos você quer focar agora ou se quer que eu gere o código com os "produtos falsos" para você já ir testando a interface visual!
