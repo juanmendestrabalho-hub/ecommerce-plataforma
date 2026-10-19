@@ -1,0 +1,1 @@
+erenciamento de estado (Zustand)
