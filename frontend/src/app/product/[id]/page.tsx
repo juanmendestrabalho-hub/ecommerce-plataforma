@@ -3,6 +3,7 @@
 import { useCartStore } from '@/store/cartStore';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 // Como ainda não temos o banco de dados, repetimos o mock de produtos aqui temporariamente.
 // No futuro, isso fará um fetch na nossa API do back-end.
@@ -32,7 +33,9 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
       imageUrl: product.imageUrl,
       quantity: 1,
     });
-    alert('Produto adicionado ao carrinho!'); // Substituiremos isso no passo 2
+    
+    // Notificação visual moderna e elegante substituindo o alert()
+    toast.success('Produto adicionado ao carrinho com sucesso!');
   };
 
   return (
@@ -45,37 +48,3 @@ export default function ProductDetailsPage({ params }: { params: { id: string } 
             alt={product.name} 
             className="w-full h-[400px] md:h-full object-cover"
           />
-        </div>
-
-        {/* Lado das Informações */}
-        <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-          <nav className="text-sm text-gray-500 mb-6">
-            <Link href="/" className="hover:underline">Home</Link> / Produtos / {product.name}
-          </nav>
-          
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">{product.name}</h1>
-          <p className="text-gray-600 text-lg mb-8 leading-relaxed">{product.description}</p>
-          
-          <div className="text-4xl font-black text-black mb-8">
-            R$ {product.price.toFixed(2).replace('.', ',')}
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4">
-            <button 
-              onClick={handleAddToCart}
-              className="flex-1 bg-black text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-800 transition-colors"
-            >
-              Adicionar ao Carrinho
-            </button>
-            <Link 
-              href="/cart"
-              className="flex-1 bg-gray-100 text-black px-8 py-4 rounded-xl font-bold text-lg text-center hover:bg-gray-200 transition-colors"
-            >
-              Ver Carrinho
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
