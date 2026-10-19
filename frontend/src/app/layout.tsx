@@ -1,5 +1,6 @@
 import './globals.css';
 import Navbar from '@/components/Navbar';
+import { Toaster } from 'react-hot-toast';
 
 export const metadata = {
   title: 'Minha Loja - E-commerce',
@@ -14,6 +15,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-grow p-4 md:p-8">
           {children}
         </main>
+        {/* Adicionando o Toaster aqui embaixo */}
+        <Toaster 
+          position="bottom-right" 
+          toastOptions={{
+            style: {
+              background: '#333',
+              color: '#fff',
+              borderRadius: '10px',
+            },
+          }} 
+        />
       </body>
     </html>
   );
