@@ -1,5 +1,6 @@
 'use client';
 import { useCartStore } from '@/store/cartStore';
+import Link from 'next/link';
 
 interface Product {
   id: string;
@@ -24,15 +25,22 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col">
-      <div className="relative h-56 overflow-hidden">
+      {/* Imagem clicável levando para a página do produto */}
+      <Link href={`/product/${product.id}`} className="relative h-56 overflow-hidden block">
         <img 
           src={product.imageUrl} 
           alt={product.name} 
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
-      </div>
+      </Link>
+      
       <div className="p-5 flex flex-col flex-grow">
-        <h2 className="text-lg font-bold text-gray-800 mb-2 line-clamp-1">{product.name}</h2>
+        {/* Título clicável */}
+        <Link href={`/product/${product.id}`}>
+          <h2 className="text-lg font-bold text-gray-800 mb-2 line-clamp-1 hover:text-blue-600 transition-colors">
+            {product.name}
+          </h2>
+        </Link>
         <p className="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">{product.description}</p>
         
         <div className="flex items-center justify-between mt-auto">
