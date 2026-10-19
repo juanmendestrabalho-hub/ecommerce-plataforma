@@ -1,8 +1,10 @@
 'use client';
 import { useCartStore } from '@/store/cartStore';
 import Link from 'next/link';
+import toast from 'react-hot-toast'; // <-- Importe o toast
 
 interface Product {
+  // ... (mesmo código de antes)
   id: string;
   name: string;
   description: string;
@@ -21,6 +23,8 @@ export default function ProductCard({ product }: { product: Product }) {
       imageUrl: product.imageUrl,
       quantity: 1
     });
+    // Substituindo o comportamento silencioso por um aviso visual:
+    toast.success(`${product.name} adicionado ao carrinho!`); 
   };
 
   return (
